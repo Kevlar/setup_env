@@ -1,28 +1,29 @@
 ---
 # This playbook installs software and creates symlinks to dotfiles
 
-- name: Install emacs
-  package:
-    name=emacs state=latest
-  
-- name: Install tmux
-  package:
-    name=tmux state=latest
+- hosts: all
+  tasks:
+    - name: Install emacs
+      package:
+        name=emacs state=latest
+    - name: Install tmux
+      package:
+        name=tmux state=latest
 
-- name: Create bashrc symlink
-  file:
-    src: "{{playbook_dir}}/.bashrc"
-    dest: "~/.bashrc"
-    state: link
+    - name: Create bashrc symlink
+      file:
+        src: "{{playbook_dir}}/.bashrc"
+        dest: "~/.bashrc"
+        state: link
 
-- name: Create emacs config symlink
-  file:
-    src: "{{playbook_dir}}/init.el"
-    dest: "~/.emacs.d/init.el"
-    state: link
+    - name: Create emacs config symlink
+      file:
+        src: "{{playbook_dir}}/init.el"
+        dest: "~/.emacs.d/init.el"
+        state: link
 
-- name: Create tmux.conf symlink
-  file:
-    src: "{{playbook_dir}}/.tmux.conf"
-    dest: "~/.tmux.conf"
-    state: link
+    - name: Create tmux.conf symlink
+      file:
+        src: "{{playbook_dir}}/.tmux.conf"
+        dest: "~/.tmux.conf"
+        state: link
