@@ -1,12 +1,15 @@
 ---
 # This playbook installs software and creates symlinks to dotfiles
 
-- hosts: all
+- hosts: localhost
   tasks:
     - name: Install emacs
+      become: yes
       package:
         name=emacs state=latest
+
     - name: Install tmux
+      become: yes
       package:
         name=tmux state=latest
 
