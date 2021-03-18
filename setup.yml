@@ -15,9 +15,9 @@
 
     - name: Remove old bashrc
       file:
-	path: "~/.bashrc"
+        path: "~/.bashrc"
         state: absent
-	
+
     - name: Create bashrc symlink
       file:
         src: "{{playbook_dir}}/.bashrc"
@@ -26,9 +26,9 @@
 
     - name: Remove old emacs config
       file:
-	path: "~/.emacs.d/init.el"
+        path: "~/.emacs.d/init.el"
         state: absent
-	
+
     - name: Create emacs config symlink
       file:
         src: "{{playbook_dir}}/init.el"
@@ -38,10 +38,16 @@
     - name: Remove old tmux.conf
       file:
         state: absent
-	path: "~/.tmux.conf"
-	
+        path: "~/.tmux.conf"
+
     - name: Create tmux.conf symlink
       file:
         src: "{{playbook_dir}}/.tmux.conf"
         dest: "~/.tmux.conf"
         state: link
+
+    - name: Set git editor
+      git_config:
+        name: core.editor
+        scope: global
+        value: "emacs -nw"
