@@ -29,6 +29,11 @@
         path: "~/.emacs.d/init.el"
         state: absent
 
+    - name: Create emacs config dir
+      file:
+        path: "~/.emacs.d"
+        state: directory
+
     - name: Create emacs config symlink
       file:
         src: "{{playbook_dir}}/init.el"
