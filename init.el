@@ -16,3 +16,5 @@
 		  week))
       (message "%s" file)
       (delete-file file))))
+
+(setq-default indent-tabs-mode nil) ; use spaces instead of tabs
